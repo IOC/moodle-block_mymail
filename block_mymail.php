@@ -1,24 +1,21 @@
 <?php
-
-//  My mail block for Moodle
-//  Copyright © 2013  Institut Obert de Catalunya
+// This file is part of Moodle - http://moodle.org/
 //
-//  This program is free software: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License as published by
-//  the Free Software Foundation, either version 3 of the License, or
-//  (at your option) any later version.
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
 //
-//  This program is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
 //
-//  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * My mail block
- *
  *
  * @package    block
  * @subpackage mymail
@@ -45,7 +42,7 @@ class block_mymail extends block_base {
     public function get_content() {
         global $USER, $OUTPUT;
 
-        if($this->content !== NULL) {
+        if ($this->content !== null) {
             return $this->content;
         }
 
@@ -55,13 +52,13 @@ class block_mymail extends block_base {
 
         $count = local_mail_message::count_menu($USER->id);
 
-        //Compose
+        // Compose
         $content = $OUTPUT->container_start('compose');
         $url = new moodle_url('/local/mail/create.php');
         $name = html_writer::tag('span', get_string('compose', 'block_mymail'));
         $content .= html_writer::link($url, $name);
         $content .= $OUTPUT->container_end();
-        //Inbox
+        // Inbox
         $content .= $OUTPUT->container_start('block_mymail_inbox');
         $params = array('t' => 'inbox');
         $url = new moodle_url('/local/mail/view.php', $params);
@@ -71,14 +68,14 @@ class block_mymail extends block_base {
             $content .= html_writer::tag('span', '(' . $count->inbox . ')', array('class' => 'block_mymail_count'));
         }
         $content .= $OUTPUT->container_end();
-        //Starred
+        // Starred
         $content .= $OUTPUT->container_start('starred');
         $params = array('t' => 'starred');
         $url = new moodle_url('/local/mail/view.php', $params);
         $name = html_writer::tag('span', get_string('starred', 'block_mymail'));
         $content .= html_writer::link($url, $name);
         $content .= $OUTPUT->container_end();
-        //Drafts
+        // Drafts
         $content .= $OUTPUT->container_start('drafts');
         $params = array('t' => 'drafts');
         $url = new moodle_url('/local/mail/view.php', $params);
@@ -88,14 +85,14 @@ class block_mymail extends block_base {
             $content .= html_writer::tag('span', '(' . $count->drafts . ')', array('class' => 'block_mymail_count'));
         }
         $content .= $OUTPUT->container_end();
-        //Sent
+        // Sent
         $content .= $OUTPUT->container_start('sent');
         $params = array('t' => 'sent');
         $url = new moodle_url('/local/mail/view.php', $params);
         $name = html_writer::tag('span', get_string('sentmail', 'block_mymail'));
         $content .= html_writer::link($url, $name);
         $content .= $OUTPUT->container_end();
-        //Courses
+        // Courses
         $courses = enrol_get_my_courses();
         $text = '';
         foreach ($courses as $course) {
@@ -141,7 +138,7 @@ class block_mymail extends block_base {
             $content .= $OUTPUT->container_end('block_mymail_labels');
             $content .= $OUTPUT->container_end('labels');
         }
-        //Trash
+        // Trash
         $content .= $OUTPUT->container_start('trash');
         $params = array('t' => 'trash');
         $url = new moodle_url('/local/mail/view.php', $params);
