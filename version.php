@@ -25,10 +25,10 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version      = 2013031300;        // The current plugin version (Date: YYYYMMDDXX)
+$plugin->version      = 2014050600;        // The current plugin version (Date: YYYYMMDDXX)
 $plugin->requires     = 2011112900;        // Requires this Moodle version
 $plugin->component    = 'block_mymail';    // Full name of the plugin (used for diagnostics)
 
 $plugin->dependencies = array(
-    'local_mail' => ANY_VERSION
+    'local_mail' => 2014050100
 );

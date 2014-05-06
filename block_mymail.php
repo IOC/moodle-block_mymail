@@ -96,6 +96,10 @@ class block_mymail extends block_base {
         $courses = enrol_get_my_courses();
         $text = '';
         foreach ($courses as $course) {
+            $context = get_context_instance(CONTEXT_COURSE, $course->id);
+            if (!has_capability('local/mail:usemail', $context)) {
+                continue;
+            }
             $params = array('t' => 'course', 'c' => $course->id);
             $url = new moodle_url('/local/mail/view.php', $params);
             $text .= html_writer::start_tag('div', array('class' => 'block_mymail_course'));
