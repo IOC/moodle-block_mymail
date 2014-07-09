@@ -96,7 +96,7 @@ class block_mymail extends block_base {
         $courses = enrol_get_my_courses();
         $text = '';
         foreach ($courses as $course) {
-            $context = get_context_instance(CONTEXT_COURSE, $course->id);
+            $context = context_course::instance($course->id);
             if (!has_capability('local/mail:usemail', $context)) {
                 continue;
             }
