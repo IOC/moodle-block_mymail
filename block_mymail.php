@@ -163,17 +163,4 @@ class block_mymail extends block_base {
     public function has_config() {
         return false;
     }
-
-    /**
-     * locations where block can be displayed
-     *
-     * @return array
-     */
-    public function applicable_formats() {
-        return array('my-index' => true);
-    }
-
-    public function instance_can_be_docked() {
-        return false;
-    }
 }
